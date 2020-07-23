@@ -1,10 +1,19 @@
 #!/usr/bin/env python
 
-# import stix
-# from stix.core import STIXPackage
+import stix
+from stix.core import STIXPackage
 import xml.etree.ElementTree as ET
+import argparse
 
-XML_FILE_NAME = "./MIFR-10121050-1.v2.stix.xml"
+
+parser = argparse.ArgumentParser(description='Pulls domains from STIX XML')
+parser.add_argument('path', metavar='Path',
+                    help='Path of the XML File')
+args = parser.parse_args()
+
+
+# XML_FILE_NAME = "./MIFR-10121050-1.v2.stix.xml"
+XML_FILE_NAME = args.path
 
 # This is the stix-specific code, but it wasn't necessary to get the required data
 
@@ -32,7 +41,7 @@ for item in root.iter():
             # Adding the links into the links list
 
 
-file_name = XML_FILE_NAME.split("./")[1].split(".")[0] + ".domain"
+file_name = XML_FILE_NAME.split("/")[-1].split(".")[0] + ".domain"
 print(file_name)
 
 with open(file_name, "x") as output:
