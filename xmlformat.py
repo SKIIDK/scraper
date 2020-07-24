@@ -12,19 +12,17 @@ parser.add_argument('path', metavar='Path',
 args = parser.parse_args()
 
 
-# XML_FILE_NAME = "./MIFR-10121050-1.v2.stix.xml"
 XML_FILE_NAME = args.path
 
 # This is the stix-specific code, but it wasn't necessary to get the required data
 
-# stix_package = STIXPackage.from_xml(XML_FILE_NAME)
-# xml = stix_package.to_xml()
-# root = ET.XML(xml)
+stix_package = STIXPackage.from_xml(XML_FILE_NAME)
+xml = stix_package.to_xml()
+root = ET.XML(xml)
+
+
+# tree = ET.parse(XML_FILE_NAME)
 # root = tree.getroot()
-
-
-tree = ET.parse(XML_FILE_NAME)
-root = tree.getroot()
 # Getting the element tree root from the specified file
 
 links = []
